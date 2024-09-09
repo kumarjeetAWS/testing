@@ -23,6 +23,7 @@ frontend:
     files:
       - '**/*'
       - secrets.js
+      - secrets.d.ts
   env:
     SECRET_VALUE: $SECRET_VALUE
   cache:
