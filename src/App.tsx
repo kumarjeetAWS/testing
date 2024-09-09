@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import AWS from 'aws-sdk';
-
+import { SecretsManager } from "@aws-amplify/core";
 const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
+  const [secretValue, setSecretValue] = useState<string | null>(null);
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
@@ -17,15 +16,18 @@ function App() {
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
-  const secretsManager = new AWS.SecretsManager();
-  console.log("secretsManager->",secretsManager);
   
   const getSecret = async () => {
-    const data = await secretsManager.getSecretValue({ SecretId: 'my-amplify-secret' }).promise();
-    const secretValue = data.SecretString;
-    console.log("Secret value:", secretValue);
-  };
-  getSecret();
+      try {
+        const secretsManager = new SecretsManager();
+        const data = await secretsManager.getSecretValue({ SecretId: 'my-amplify-secret' });
+        setSecretValue(data.SecretString);
+      } catch (error) {
+        console.error('Error fetching secret:', error);
+      }
+    };
+
+    getSecret();
 
   return (
     <main>
