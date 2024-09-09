@@ -9,6 +9,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - npm install dotenv
         - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output json)
         - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
     build:
