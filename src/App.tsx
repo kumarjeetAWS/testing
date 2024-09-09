@@ -3,9 +3,6 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 const client = generateClient<Schema>();
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
   
@@ -16,14 +13,11 @@ function App() {
   }, []);
 
   function createTodo() {
+    const secretValue = process.env.SECRET_VALUE;
+    console.log('Secret value:', secretValue);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
   
-  const getSecretValue = () => {
-    const value = process.env.SECRET_VALUE;
-    console.log("value->",value);
-  };
-  getSecretValue();
   return (
     <main>
       <h1>My todos</h1>
