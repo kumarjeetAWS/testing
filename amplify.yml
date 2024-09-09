@@ -10,8 +10,7 @@ frontend:
     preBuild:
       commands:
         - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text)
-        - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
-        - echo "const SECRET_VALUE = '$SECRET_VALUE';" > secrets.js
+        - "echo \"REACT_APP_SECRET_VALUE=$SECRET_VALUE\" >> .env"
 
     build:
       commands:
