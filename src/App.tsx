@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import dotenv from 'dotenv';
-dotenv.config();
+import AWS from 'aws-sdk';
 
 const client = generateClient<Schema>();
 
@@ -19,6 +18,13 @@ function App() {
     console.log("My Secrets->",process.env.SECRET_VALUE);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
+  const secretsManager = new AWS.SecretsManager();
+  const getSecret = async () => {
+    const data = await secretsManager.getSecretValue({ SecretId: 'my-amplify-secret' }).promise();
+    const secretValue = data.SecretString;
+    console.log("Secret value:", secretValue);
+  };
+  getSecret();
 
   return (
     <main>
