@@ -13,6 +13,8 @@ function App() {
   }, []);
 
   function createTodo() {
+    console.log("REACT_APP_SECRET_VALUE->",process.env.REACT_APP_SECRET_VALUE);
+    console.log("ENV->",process.env);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
   
