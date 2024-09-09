@@ -22,6 +22,7 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
+      - secrets.js
   env:
     SECRET_VALUE: $SECRET_VALUE
   cache:
