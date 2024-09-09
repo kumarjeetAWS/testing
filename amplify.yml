@@ -20,6 +20,8 @@ frontend:
     baseDirectory: dist
     files:
       - '**/*'
+  env:
+    SECRET_VALUE: $SECRET_VALUE
   cache:
     paths:
       - .npm/**/*
