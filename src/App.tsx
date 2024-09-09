@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import { SecretsManager } from "@aws-amplify/aws-secretsmanager";
 const client = generateClient<Schema>();
+import dotenv from 'dotenv';
+dotenv.config();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
@@ -17,18 +18,13 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
   
-  const getSecret = async () => {
-      try {
-        const secretsManager = new SecretsManager();
-        const data = await secretsManager.getSecretValue({ SecretId: 'my-amplify-secret' });
-        setSecretValue(data.SecretString);
-      } catch (error) {
-        console.error('Error fetching secret:', error);
-      }
-    };
-
-    getSecret();
-
+  const client = new SecretsManagerClient({ region: "us-east-1" });
+  
+  const getSecretValue = () => {
+    const value = process.env.SECRET_VALUE;
+    console.log("value->",value);
+  };
+  getSecretValue();
   return (
     <main>
       <h1>My todos</h1>
