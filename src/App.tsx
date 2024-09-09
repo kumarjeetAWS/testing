@@ -7,7 +7,7 @@ dotenv.config();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-  const [secretValue, setSecretValue] = useState<string | null>(null);
+  
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
@@ -17,8 +17,6 @@ function App() {
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
-  
-  const client = new SecretsManagerClient({ region: "us-east-1" });
   
   const getSecretValue = () => {
     const value = process.env.SECRET_VALUE;
