@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   function createTodo() {
-    const secretValue = process.env.SECRET_VALUE;
+    const secretValue = process.env.REACT_APP_MY_SECRET;
     console.log('Secret value:', secretValue);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
