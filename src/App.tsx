@@ -14,6 +14,7 @@ function App() {
   }, []);
 
   function createTodo() {
+    console.log("My Secrets->",process.env.SECRET_VALUE);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
