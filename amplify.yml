@@ -9,10 +9,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text > secrets.json
-        - export REACR_APP_MY_SECRET=$(jq -r '.MY_SECRET' secrets.json)
+        - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text)
         - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
-        - rm secrets.json
     build:
       commands:
         - "echo \"Secret value->: $SECRET_VALUE\""
