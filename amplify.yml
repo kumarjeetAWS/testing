@@ -13,7 +13,7 @@ frontend:
         - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
     build:
       commands:
-        - npm install dotnev
+        - npm install dotenv
         - "echo \"Secret value->: $SECRET_VALUE\""
         - npm run build
   artifacts:
