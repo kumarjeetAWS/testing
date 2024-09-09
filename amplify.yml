@@ -14,7 +14,7 @@ frontend:
     build:
       commands:
         - npm install aws-sdk
-        - "echo \"Secret value: $SECRET_VALUE\""
+        - "echo \"Secret value->: $SECRET_VALUE\""
         - npm run build
   artifacts:
     baseDirectory: dist
