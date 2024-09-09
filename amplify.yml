@@ -7,6 +7,10 @@ backend:
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
+    preBuild:
+      commands:
+        - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output json)
+        - echo "SECRET_VALUE=$SECRET_VALUE" >> .env
     build:
       commands:
         - npm run build
