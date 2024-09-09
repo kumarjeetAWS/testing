@@ -10,10 +10,10 @@ frontend:
     preBuild:
       commands:
         - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output json)
-        - echo "SECRET_VALUE=$SECRET_VALUE" >> .env
+        - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
     build:
       commands:
-        - echo "Secret value: $SECRET_VALUE"
+        - "echo \"Secret value: $SECRET_VALUE\""
         - npm run build
   artifacts:
     baseDirectory: dist
