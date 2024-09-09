@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import { SecretsManager } from "@aws-amplify/core";
+import { SecretsManager } from "@aws-amplify/aws-secretsmanager";
 const client = generateClient<Schema>();
 
 function App() {
