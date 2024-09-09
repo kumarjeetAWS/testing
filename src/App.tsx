@@ -15,10 +15,11 @@ function App() {
   }, []);
 
   function createTodo() {
-    console.log("My Secrets->",process.env.SECRET_VALUE);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
   const secretsManager = new AWS.SecretsManager();
+  console.log("secretsManager->",secretsManager);
+  
   const getSecret = async () => {
     const data = await secretsManager.getSecretValue({ SecretId: 'my-amplify-secret' }).promise();
     const secretValue = data.SecretString;
