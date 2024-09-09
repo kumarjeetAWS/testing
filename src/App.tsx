@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const client = generateClient<Schema>();
 
