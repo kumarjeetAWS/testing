@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 const client = generateClient<Schema>();
-import SECRET_VALUE from './secrets.js';
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
@@ -14,10 +13,6 @@ function App() {
   }, []);
 
   function createTodo() {
-    const secretValue = process.env.SECRET_VALUE;
-    console.log('Secret value-->', SECRET_VALUE);
-    console.log('Secret value==>', secretValue);
-    console.log('Secret env:', process.env);
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
   
