@@ -13,7 +13,7 @@ frontend:
         - "echo \"SECRET_VALUE=$SECRET_VALUE\" >> .env"
     build:
       commands:
-        - npm install aws-sdk
+        - npm install @aws-amplify/aws-secretsmanager
         - "echo \"Secret value->: $SECRET_VALUE\""
         - npm run build
   artifacts:
