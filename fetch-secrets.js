@@ -30,7 +30,7 @@ async function updateAmplifySecrets(appId,envName,secretValues){
     const params = {
       appId: appId,
       branchName: envName,
-      enviromentVariables: updatedVars,
+      environmentVariables: updatedVars,
     }
     const updateData = await amplify.updateBranch(params).promise();
     console.log("updateData=>",updateData);
