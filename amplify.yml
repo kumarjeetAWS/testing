@@ -9,13 +9,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text)
-        - "echo \"REACT_APP_SECRET_VALUE=$SECRET_VALUE\" >> .env"
+        - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secrets --query SecretString --output text) 
+        - export REACT_APP_SECRET_VALUE="$SECRET_VALUE"
     build:
       commands:
         - "echo \"Secret value->: $SECRET_VALUE\""
+        - export REACT_APP_SECRET_VALUES=$SECRET_VALUE
         - npm install
-        - npm install aws-sdk
         - npm run build
         
   artifacts:
