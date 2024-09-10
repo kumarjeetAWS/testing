@@ -39,7 +39,6 @@ function App() {
     console.log("secrets->",secrets);  
     }
     
-    // Loop through the secrets and add NUXT_ variables to envVars
     for (const secret of Object.keys(secrets)) {
       if (secret.startsWith('NUXT_')) {
         envVars[secret] = secrets[secret];
