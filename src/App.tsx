@@ -16,8 +16,15 @@ function App() {
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
-  
-  
+  function myFunction(){
+    console.log("SECRET=>",process.env.REACT_APP_SECRET_VALUES);
+    console.log("SECRET_VALUE=>",process.env.SECRET_VALUE);
+    console.log("$SECRET_VALUE=>",process.env.$SECRET_VALUE);
+    console.log("envirioment=>",process.env);
+    console.log("process=>",process);
+    console.log("env=>",env);
+  }
+  myFunction();
   return (
     <main>
       <h1>My todos</h1>
