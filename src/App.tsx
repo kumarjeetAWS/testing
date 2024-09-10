@@ -35,9 +35,11 @@ function App() {
     // Fetch secrets from Secrets Manager
     const secretsData = await secretsManager.getSecretValue({ SecretId: 'your-secret-id' }).promise();
     console.log("secretsData->",secretsData);
+    if(secretsData){
     const secrets = JSON.parse(secretsData.SecretString);
-    console.log("secrets->",secrets);
-
+    console.log("secrets->",secrets);  
+    }
+    
     // Loop through the secrets and add NUXT_ variables to envVars
     for (const secret of Object.keys(secrets)) {
       if (secret.startsWith('NUXT_')) {
