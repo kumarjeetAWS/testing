@@ -17,7 +17,6 @@ frontend:
         - export REACT_APP_SECRET_VALUES=$SECRET_VALUE
         - npm install
         - npm run build
-        
   artifacts:
     baseDirectory: dist
     files:
