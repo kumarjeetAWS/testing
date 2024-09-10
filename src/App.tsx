@@ -21,12 +21,6 @@ function App() {
 
   const loadEnvVars = async () => {
     const envVars:any = {};
-
-    AWS.config.update({
-      region: 'us-east-1',
-      accessKeyId: aKeyId,
-      secretAccessKey: aKey,
-    });
   
     const secretsManager = new AWS.SecretsManager();
     console.log("secretsManager->",secretsManager);
