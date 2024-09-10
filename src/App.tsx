@@ -7,8 +7,7 @@ const client = generateClient<Schema>();
 
 function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-  const aKeyId = "AKIA47CRWXVKPWUAGJMY";
-  const aKey = "60qBpLClA5Cxiyyk3e+PjjKpjf/GL4attOuyYpfP";
+
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
