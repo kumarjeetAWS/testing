@@ -21,8 +21,7 @@ function App() {
     console.log("SECRET_VALUE=>",process.env.SECRET_VALUE);
     console.log("$SECRET_VALUE=>",process.env.$SECRET_VALUE);
     console.log("envirioment=>",process.env);
-    console.log("process=>",process);
-    console.log("env=>",env);
+  
   }
   myFunction();
   return (
