@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-const AWS = require ('aws-sdk');
+import AWS from 'aws-sdk';
+
 const client = generateClient<Schema>();
 
 function App() {
