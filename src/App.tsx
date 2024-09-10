@@ -22,8 +22,7 @@ function App() {
 
   const loadEnvVars = async () => {
     const envVars:any = {};
-  
-    // Configure AWS SDK with your credentials
+
     AWS.config.update({
       region: 'us-east-1',
       accessKeyId: aKeyId,
