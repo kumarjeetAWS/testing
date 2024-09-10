@@ -11,7 +11,7 @@ frontend:
       commands:
         - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text) 
         - export REACT_APP_SECRET_VALUE="$SECRET_VALUE"
-        - - npm install aws-sdk
+        - npm install aws-sdk
     build:
       commands:
         - "echo \"Secret value->: $SECRET_VALUE\""
