@@ -15,6 +15,7 @@ frontend:
       commands:
         - "echo \"Secret value->: $SECRET_VALUE\""
         - npm install
+        - npm install aws-sdk
         - npm run build
         
   artifacts:
