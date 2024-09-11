@@ -10,7 +10,7 @@ const amplify = new AWS.Amplify({region: 'us-east-1'});
 async function getSecretsValue(secretName){
   try{
     const data = await secretsManager.getSecretValue({SecretId: secretName}).promise();
-    console.log("data=>",data);
+    console.log("data==>",data);
     if('SecretString' in data){
       console.log("SecretString=>", JSON.parse(data.SecretString));
       const resp = await updateAmplifySecrets("dzyja44gtci76","main",JSON.parse(data.SecretString));
