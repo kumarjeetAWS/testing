@@ -12,7 +12,7 @@ frontend:
         - |
 
           get_secret_value() {
-            aws secretsmanager get-secret-value --secret-id="$1" --query 'SecretString' --output text
+            aws secretsmanager get-secret-value --secret-id my-amplify-secret --query 'SecretString' --output text
           }
 
 
