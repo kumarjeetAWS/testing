@@ -9,10 +9,21 @@ frontend:
   phases:
     preBuild:
       commands:
-        - SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-amplify-secret --query SecretString --output text) 
-        - export REACT_APP_SECRET_VALUE="$SECRET_VALUE"
-        - npm install aws-sdk
-        - node fetch-secrets.js
+        - |
+
+          get_secret_value() {
+            aws secretsmanager get-secret-value --secret-id="$1" --query 'SecretString' --output text
+          }
+
+
+          secret_names=$(aws secretsmanager list-secrets --query "SecretList[?starts_with(Name, 'NUXT_TEST')].Name" --output text)
+
+          for secret_name in $secret_names; do
+            echo "Secret Name: $secret_name"
+            echo "Secret Value:"
+            get_secret_value "$secret_name"
+            echo "----------------------------------------"
+          done
     build:
       commands:
         - "echo \"Secret value->: $SECRET_VALUE\""
