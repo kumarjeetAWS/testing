@@ -16,7 +16,7 @@ frontend:
           }
 
 
-          secret_names=$(aws secretsmanager list-secrets --query "SecretList[?starts_with(Name, 'NUXT_TEST')].Name" --output text)
+          secret_names=$(aws secretsmanager list-secrets --query "SecretList[?starts_with(Name, 'my-amplify-secret')].Name" --output text)
 
           for secret_name in $secret_names; do
             echo "Secret Name: $secret_name"
