@@ -43,3 +43,13 @@ frontend:
     paths:
       - .npm/**/*
       - node_modules/**/*
+      
+customHeaders:
+  - pattern: '**/*.js'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
+  - pattern: '**/*.css'
+    headers:
+      - key: 'Content-Encoding'
+        value: 'gzip'
