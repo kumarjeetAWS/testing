@@ -32,7 +32,7 @@ frontend:
         - npm run build
         
   artifacts:
-    baseDirectory: build
+    baseDirectory: dist
     files:
       - '**/*'
       - secrets.js
