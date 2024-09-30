@@ -1,3 +1,10 @@
 headers:
   - key: Content-Encoding
     value: gzip
+  - key: Accept-Encoding
+    value: gzip
+rewrites:
+  - source: /
+    target: /index.html
+    status: 200
+    condition: '!{HTTP:Accept-Encoding} =~ /gzip/'
