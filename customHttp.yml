@@ -1,8 +1,3 @@
 headers:
   - key: Content-Encoding
     value: gzip
-
-rewrites:
-  - source: </^(service-worker\.js)$>
-    type: 200
-    destination: $1
